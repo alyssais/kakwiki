@@ -55,7 +55,7 @@ hook -group wiki-highlight global WinSetOption filetype=wiki %{
     add-highlighter window ref wiki
 }
 
-hook -group wiki-highlight global WinSetOption filetype=(?!ini).* %{
+hook -group wiki-highlight global WinSetOption filetype=(?!wiki).* %{
     unmap window normal <ret>
     remove-highlighter window/wiki
 }
