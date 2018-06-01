@@ -7,16 +7,21 @@ define-command select-outermost-bracket-group %{
 
 define-command goto-wiki %{
      select-outermost-bracket-group
-     execute-keys %{s\[\[.*\]\]<ret>}
-     execute-keys %{HH<a-;>LL<a-;>}
+     try %{ execute-keys %{s\[\[.*\]\]<ret>} }
 
-     edit %sh{
-         case "$kak_selection" in
-           */) path="$PWD/wiki$kak_selection.wiki" ;;
-           *) path="$(dirname "$kak_buffile")/$kak_selection.wiki" ;;
+     %sh{
+       if href="$(expr "$kak_selection" : '\[\[\(.*\)\|' \
+                   '|' "$kak_selection" : '\[\[\(.*\)\]\]')";
+       then
+         case "$href" in
+           */) path="$PWD/wiki$href.wiki" ;;
+           *) path="$(dirname "$kak_buffile")/$href.wiki" ;;
          esac;
-         echo "$path";
-     }
+         echo "edit %{$path}";
+       else
+         echo 'execute-keys <a-i>wi[[<esc>a]]<esc>HH';
+       fi;
+    }
 }
 
 add-highlighter shared/ regions -default content wiki \

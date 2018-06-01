@@ -7,7 +7,7 @@ http://kakoune.org[Kakoune].
 Features
 --------
 
-* Follow wiki links
+* Create and follow wiki links
 * Partial vimwiki syntax highlighting
 
 Installation
