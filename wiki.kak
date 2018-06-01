@@ -7,7 +7,7 @@ define-command select-outermost-bracket-group %{
 
 define-command goto-wiki %{
      select-outermost-bracket-group
-     execute-keys %{%s\[\[.*\]\]<ret>}
+     execute-keys %{s\[\[.*\]\]<ret>}
      execute-keys %{HH<a-;>LL<a-;>}
 
      edit %sh{
