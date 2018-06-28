@@ -24,6 +24,16 @@ define-command goto-wiki %{
     }
 }
 
+define-command edit-wiki-index %{
+  %sh{
+    if [ -f ~/wiki/index.wiki ]; then
+      printf "edit %%sh{echo %q}\n" ~/wiki/index.wiki
+    else
+      printf "ranger %q\n" ~/wiki
+    fi
+  }
+}
+
 add-highlighter shared/ regions -default content wiki \
     header1 '^=\h' '\h=$' '' \
     header '^==+\h' '\h==+$' '' \

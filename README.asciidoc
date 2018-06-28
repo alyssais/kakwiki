@@ -15,6 +15,11 @@ Installation
 
 Configure Kakoune to `source` wiki.kak at startup.
 
+The `edit-wiki-index` command will open ~/wiki/index.wiki if it exists, or
+otherwise open the wiki in the https://ranger.github.io/[ranger directory
+browser], if installed. A key can be bound to this command to approximate
+vimwiki's `\ww`.
+
 License
 -------
 
