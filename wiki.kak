@@ -26,7 +26,7 @@ define-command goto-wiki %{
 
 define-command edit-wiki-index %{
   %sh{
-    if [ -f ~/wiki/index.wiki ]; then
+    if [ -f ~/wiki/index.wiki ] || ! command -v ranger >/dev/null; then
       printf "edit %%sh{echo %q}\n" ~/wiki/index.wiki
     else
       printf "ranger %q\n" ~/wiki
