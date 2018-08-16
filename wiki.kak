@@ -34,28 +34,6 @@ define-command edit-wiki-index %{
   }
 }
 
-add-highlighter shared/ regions -default content wiki \
-    header1 '^=\h' '\h=$' '' \
-    header '^==+\h' '\h==+$' '' \
-    link '\[\[' '\]\]' '\[\[' \
-
-add-highlighter shared/wiki/header1 fill title
-add-highlighter shared/wiki/header1 regions -default boundaries outer \
-    content '(?<=)[^=]' '(?==)' ''
-add-highlighter shared/wiki/header1/outer/content ref wiki/content
-
-add-highlighter shared/wiki/header fill header
-add-highlighter shared/wiki/header regions -default boundaries outer \
-    content '(?<=)[^=]' '(?==)' ''
-add-highlighter shared/wiki/header/outer/content ref wiki/content
-
-add-highlighter shared/wiki/link/ regions -default brackets outer \
-    href '(?<=\[)[^\[]' '(?=\]\])|(?=\|)' '' \
-    description '(?<=\|)' '(?=\]\])' ''
-add-highlighter shared/wiki/link/outer/brackets fill link
-add-highlighter shared/wiki/link/outer/href fill link
-add-highlighter shared/wiki/link/outer/description ref wiki/content
-
 hook global BufCreate .*\.wiki %{
     set-option buffer filetype wiki
 }
