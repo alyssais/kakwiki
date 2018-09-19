@@ -9,7 +9,7 @@ define-command goto-wiki %{
      select-outermost-bracket-group
      try %{ execute-keys %{s\[\[.*\]\]<ret>} }
 
-     %sh{
+     evaluate-commands %sh{
        if href="$(expr "$kak_selection" : '\[\[\(.*\)\|' \
                    '|' "$kak_selection" : '\[\[\(.*\)\]\]')";
        then
@@ -25,7 +25,7 @@ define-command goto-wiki %{
 }
 
 define-command edit-wiki-index %{
-  %sh{
+  evaluate-commands %sh{
     if [ -f ~/wiki/index.wiki ] || ! command -v ranger >/dev/null; then
       printf "edit %%sh{echo %q}\n" ~/wiki/index.wiki
     else
